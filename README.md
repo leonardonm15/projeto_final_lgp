@@ -1,6 +1,8 @@
 # projeto_final_lgp
 PELO AMOR DE DEUS TIME, CRIA UMA BRANCH PRA CADA FUNCIONALIDADE CRIADA, SUJEITO A PAULADA
 
+VAMOS FAZER CADA FUNCIONALIDADE DE CADA VEZ FUNCIONAR
+
 1.1 cadastrar aluno []
 1.2 consultar por id []
 1.3 excluir por id []
