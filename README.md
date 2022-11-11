@@ -1,4 +1,6 @@
-# projeto_final_lgp
+# Projeto Final LPG
+
+
 PELO AMOR DE DEUS TIME, CRIA UMA BRANCH PRA CADA FUNCIONALIDADE CRIADA, SUJEITO A PAULADA
 
 VAMOS FAZER CADA FUNCIONALIDADE DE CADA VEZ FUNCIONAR
@@ -27,5 +29,5 @@ VAMOS FAZER CADA FUNCIONALIDADE DE CADA VEZ FUNCIONAR
 3.2 relatorio de media [ ]
 
 
-especificaçes de cada tarefa no docs
+Especificaçes de cada tarefa no docs:
 https://docs.google.com/document/d/19ZBneR4nolNA3iNg4ijWaMsKK1H2Mz1V82thlRTlP04/edit
