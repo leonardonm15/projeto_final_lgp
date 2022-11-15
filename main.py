@@ -17,5 +17,6 @@ sistema.merge_tables("nomes", "notas", "notas_nomes")
 sistema.show_df_names()
 
 sistema.print_df("notas_nomes")
+sistema.gravar_tabela("notas_nomes")
 
-sistema.dados_aluno("notas_nomes", id_aluno=1033221237)
+#sistema.dados_aluno("notas_nomes", id_aluno=1033221237)

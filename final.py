@@ -7,7 +7,7 @@ class Sistema:
     
     def load_csv(self, path, nome_df):
         try:
-            df = pd.read_csv(path, delimiter=';')
+            df = pd.read_csv(path, delimiter=';', index_col='id_aluno')
             self.dfs_dict[nome_df] = df
         except Exception as e:
             print(e)
@@ -21,7 +21,7 @@ class Sistema:
     def merge_tables(self, df1, df2, new_df):
         print("============= COMEÇANDO MERGE =============")
         try:
-            df = pd.merge(self.dfs_dict[df1], self.dfs_dict[df2], how="inner")
+            df = pd.merge(self.dfs_dict[df1], self.dfs_dict[df2], how="inner", on="id_aluno")
             self.dfs_dict[new_df] = df
             self.merged_df = new_df
         except Exception as e:
@@ -35,7 +35,6 @@ class Sistema:
         # uma vez que ele pode nao ter dado merge ainda
         for arg in kwargs:
             if arg != None:
-                print("args, args_name", arg, " ", arg.__name__)
                 return (arg, arg.__name__)
         return ValueError
 
@@ -49,6 +48,15 @@ class Sistema:
             print(self.dfs_dict[nome_df])
         print("=================================================================")
 
+    def gravar_tabela(self, nome_tabela, path=""):
+        print('================== GERANDO UM NOVO CSV ==================')
+        try:
+            self.dfs_dict[nome_tabela].to_csv(f"{path}{nome_tabela}.csv", sep=';')
+        except:
+            print("============== ALGO DEU ERRADO NA GERAÇÃO DO CSV ==============")
+        print("================== FINALIZANDO ==================")
+
+    # ainda nao ta funcionando
     def dados_aluno(self, table, id_aluno=None, Nome=None):
         print("========== COMEÇANDO BUSCA ===========")
         try:
