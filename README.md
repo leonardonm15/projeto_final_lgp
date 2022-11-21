@@ -6,11 +6,11 @@ PELO AMOR DE DEUS TIME, CRIA UMA BRANCH PRA CADA FUNCIONALIDADE CRIADA, SUJEITO 
 VAMOS FAZER CADA FUNCIONALIDADE DE CADA VEZ FUNCIONAR
 
 
-1.1 cadastrar aluno [ ]
+1.1 cadastrar aluno [x]
 
-1.2 consultar por id [ ]
+1.2 consultar por id [x]
 
-1.3 excluir por id [ ] 
+1.3 excluir por id [x] 
 
 1.4 alterar por id [ ]
 
