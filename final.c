@@ -22,43 +22,25 @@ aluno alunos[10];
 char temp[50];
 
 
-
-void index_delete(aluno *arr, int qual_index_deletado, int nota) {
-  // recebe o array, quantos itens estão colocados nele e qual o index que foi
-  // nota é booleabo, ou seja, so recebe 0 ou 1ing the result of an assignment as a condition without parenth
-  if (nota == 0) {
-    for (int i = qual_index_deletado + 1; i < alunos_colocados; i++) {
-      arr[i - 1] = arr[i];
-    }
-    alunos_colocados--;
-  } else {
-    
-  }
-}
-
 void tira_aluno_por_id(int id_aluno) {
   int flag = 0;
-  for (int i = 0; i < alunos_colocados; i++) {
-    if (alunos[i].id_aluno == id_aluno) {
-      flag = 1;
-      printf("Deseja deletar o aluno de nome %s ? \n", alunos[i].nome_aluno);
-      int yesono;
-      printf("--------[S]im ou [N]ão ?--------\n");
-      scanf("%c", &yesono);
-      if (yesono == 'S') {
-        index_delete(alunos, alunos_colocados, i);
-      } else if (yesono == 'N') {
-        printf("Aluno não deletado\n");
-      } else {
-        printf("!=!=!=! Erro, tecla errada !=!=!=!\n");
-      }
-    }
-  }
-  if (!flag) {
-    printf("O aluno NÃO existe na base\n");
-  }
-}
 
+  if(alunos[id_aluno-1].num_aluno[0] != 0){
+    printf("Código Aluno: %d\nAluno: %s", id_aluno, alunos[id_aluno - 1].num_aluno);
+    printf("Confirma Exclusão [S]im, [N]ão\n");
+    char yesono;
+    scanf(" %c", &yesono);
+    if (yesono == 'S') {
+      strcpy(alunos[alunos_colocados - 1].num_aluno, "deleted");
+    } else if (yesono == 'N') {
+      printf("Aluno não deletado\n");
+    } else {
+      printf("!=!=!=! Erro, tecla errada !=!=!=!\n");
+    }
+  } else
+
+  printf("Aluno não existe na base!");
+}
 
 
 // FUNÇÃO DE EXECUTA ALUNO
@@ -103,11 +85,10 @@ void executa_aluno(int opcao) {
 
   // EXCLUIR POR ID
   case 3: {
-    int id = 0;
+    int id;
     printf("Qual id você deseja excluir? \n");
     scanf("%d", &id);
     tira_aluno_por_id(id);
-    printf("Excluir por id\n");
   } break;
 
   // ALTERAR POR ID
