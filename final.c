@@ -89,9 +89,16 @@ void executa_aluno(int opcao) {
   
   // CONSULTAR POR ID
   case 2: {
-    printf("Consultar por id\n");
+    printf("===================================\n");
     printf("Qual id você deseja consultar?\n");
     scanf("%d", &id);
+    if(alunos[id-1].num_aluno[0] == 0){
+      printf("Não existe o Id na base de alunos!");
+    } else
+    printf("Código do Aluno: %d\nAluno: ", id);
+    puts(alunos[id - 1].num_aluno);
+    printf("===================================\n");
+
   } break;
 
   // EXCLUIR POR ID
