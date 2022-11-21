@@ -97,7 +97,7 @@ void executa_aluno(int opcao) {
     } else
     printf("Código do Aluno: %d\nAluno: ", id);
     puts(alunos[id - 1].num_aluno);
-    printf("===================================\n");
+    printf("===================================\n ");
 
   } break;
 
