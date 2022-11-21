@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// STRUCTURES
 typedef struct nota {
   int id_aluno;
   int id_nota;
@@ -15,79 +16,82 @@ typedef struct aluno {
   nota notas[3];
 } aluno;
 
+// VARIAVEIS
 int alunos_colocados = 0;
 aluno alunos[10];
-char temp;
+char temp[50];
 
-void index_delete(aluno *arr, int qual_index_deletado, int nota) {
-  // recebe o array, quantos itens estão colocados nele e qual o index que foi
-  // nota é booleabo, ou seja, so recebe 0 ou 1ing the result of an assignment as a condition without parenth
-  if (nota == 0) {
-    for (int i = qual_index_deletado + 1; i < alunos_colocados; i++) {
-      arr[i - 1] = arr[i];
-    }
-    alunos_colocados--;
-  } else {
-    
-  }
-}
 
 void tira_aluno_por_id(int id_aluno) {
   int flag = 0;
-  for (int i = 0; i < alunos_colocados; i++) {
-    if (alunos[i].id_aluno == id_aluno) {
-      flag = 1;
-      printf("Deseja deletar o aluno de nome %s ? \n", alunos[i].nome_aluno);
-      int yesono;
-      printf("--------[S]im ou [N]ão ?--------\n");
-      scanf("%c", &yesono);
-      if (yesono == 'S') {
-        index_delete(alunos, alunos_colocados, i);
-      } else if (yesono == 'N') {
-        printf("Aluno não deletado\n");
-      } else {
-        printf("!=!=!=! Erro, tecla errada !=!=!=!\n");
-      }
+
+  if(alunos[id_aluno-1].num_aluno[0] != 0){
+    printf("Código Aluno: %d\nAluno: %s", id_aluno, alunos[id_aluno - 1].num_aluno);
+    printf("Confirma Exclusão [S]im, [N]ão\n");
+    char yesono;
+    scanf(" %c", &yesono);
+    if (yesono == 'S') {
+      strcpy(alunos[alunos_colocados - 1].num_aluno, "deleted");
+    } else if (yesono == 'N') {
+      printf("Aluno não deletado\n");
+    } else {
+      printf("!=!=!=! Erro, tecla errada !=!=!=!\n");
     }
-  }
-  if (!flag) {
-    printf("O aluno NÃO existe na base\n");
-  }
+  } else
+
+  printf("Aluno não existe na base!");
 }
 
+
+// FUNÇÃO DE EXECUTA ALUNO
 void executa_aluno(int opcao) {
-  int id;
+  int id, i;
   switch (opcao) {
 
+  // CADASTRAR
   case 1: {
     printf("===================================\n");
     printf("Codigo do aluno = %d\n", alunos_colocados + 1);
     char nome_aluno[50];
+    memset(nome_aluno, 0, 50);
     printf("Digite o nome do aluno: \n");
-    scanf("  %c", &temp); // ARRUMAR!!!!
-    printf("====================================\n");
+    getchar();
 
-    while (strlen(nome_aluno) < 3 || strlen(nome_aluno) == 0) {
+    while (strlen(nome_aluno) <= 4 || strlen(nome_aluno) == 0) {
       fgets(nome_aluno, 50, stdin);
       strcpy(alunos[alunos_colocados].num_aluno, nome_aluno);
-      puts(alunos[alunos_colocados].num_aluno);
+      puts(alunos[alunos_colocados].num_aluno); // printf com \n no final
     }
-  } break;
+    
+    alunos[alunos_colocados].id_aluno = alunos_colocados +1;
+    alunos_colocados = alunos_colocados +1;
 
+    printf("====================================\n");
+  } break;
+  
+  // CONSULTAR POR ID
   case 2: {
-    printf("Consultar por id\n");
+    printf("===================================\n");
     printf("Qual id você deseja consultar?\n");
     scanf("%d", &id);
+    if(alunos[id-1].num_aluno[0] == 0){
+      printf("Não existe o Id na base de alunos!");
+    } else
+    printf("Código do Aluno: %d\nAluno: ", id);
+    puts(alunos[id - 1].num_aluno);
+    printf("===================================\n ");
+
   } break;
 
+  // EXCLUIR POR ID
   case 3: {
-    int id = 0;
+    int id;
     printf("Qual id você deseja excluir? \n");
     scanf("%d", &id);
     tira_aluno_por_id(id);
-    printf("Excluir por id\n");
   } break;
 
+  // ALTERAR POR ID
   case 4: {
     char novo_nome[50];
     char guardar_nome[50];
@@ -114,6 +118,7 @@ void executa_aluno(int opcao) {
     }
   } break;
 
+  // RELATORIO
   case 5: {
     printf("Relatório \n");
   } break;
@@ -123,56 +128,83 @@ void executa_aluno(int opcao) {
   }
 }
 
+
+
+// SEGUNDA ESCOLHA NAS VARIAVEIS DE ALUNO, NOTAS E RELATORIO
 int executa(int opcao) {
+  int opcoes;
   switch (opcao) {
+
+  //ESCOLHA ALUNO
   case 1: {
-    int opcoes;
     while (opcoes != 6) {
       printf("\n \t\t ALUNO \n Escolha uma opção:\n 1- Cadastrar\n 2- "
              "Consultar por id\n 3- Excluir por id\n 4- Alterar por id\n 5- "
              "Relatório\n 6- Sair\n");
       scanf("%d", &opcoes);
       while (opcoes < 1 || opcoes > 6) {
-        printf("Número errado, escolha uma opção valida!\nTente de novo!");
+        printf("Número errado, escolha uma opção valida!\nTente de novo!\n");
         scanf("%d", &opcoes);
       }
+      // PROXIMA FUNÇÃO DE ALUNO
       executa_aluno(opcoes);
     }
-    printf("Você finalizou o seu executa_aluno!\n");
+    printf("Você finalizou o seu executa aluno!\n");
   } break;
+
+  //ESCOLHA NOTAS
   case 2: {
-    int opcoes;
     while (opcoes != 5) {
       printf("\n \t\t NOTAS \n Escolha uma opção:\n 1- Incluir Nota do Aluno\n "
-             "2-     Alterar Nota do Aluno\n 3- Excluir Nota do Aluno\n 4- "
+             "2- Alterar Nota do Aluno\n 3- Excluir Nota do Aluno\n 4- "
              "Consultar Notas do Aluno\n 5- Voltar\n");
       scanf("%d", &opcoes);
       while (opcoes < 1 || opcoes > 5) {
         printf("Número errado, escolha uma opção valida!\nTente de novo!\n");
         scanf("%d", &opcoes);
       }
-      executa_aluno(opcoes);
+      // PROXIMA FUNÇÃO DE NOTAS
+      //executa_notas(opcoes);
     }
-    printf("Você finalizou o seu executa_aluno!\n");
+    printf("Você finalizou o seu executa nota!\n");
   } break;
-  case 3: {
 
+  //ESCOLHAS RELATORIO
+  case 3: {
+    while (opcoes != 3) {
+      printf("\n \t\t NOTAS \n Escolha uma opção:\n 1- Relatório de Notas\n "
+             "2- Relatório de Médias\n 3- Voltar\n");
+      scanf("%d", &opcoes);
+      while (opcoes < 1 || opcoes > 3) {
+        printf("Número errado, escolha uma opção valida!\nTente de novo!\n");
+        scanf("%d", &opcoes);
+      }
+      // PROXIMA FUNÇÃO DE RELATORIO
+      // executa_relatorio(opcoes);
+    }
+    printf("Você finalizou o seu executa relatorio!\n");
   } break;
+
+
   default: {
   } break;
   }
 }
 
+
+
+// PRIMERIA ESCOLHA - ALUNO, NOTAS OU RELATORIO
 int main() {
   int opcoes;
+  // FUNÇÃO PARA ESCOLHA VALIDA
   while (opcoes != 4) {
-    printf("\n \t\t MENU \nOlá usuario! Escolha uma opção:\n 1- Aluno\n 2- "
-           "Notas\n 3- Relatorios\n 4- Sair\n");
+    printf("\n \t\t MENU \nOlá usuario! Escolha uma opção:\n 1- Aluno\n 2- Notas\n 3- Relatorios\n 4- Sair\n");
     scanf("%d", &opcoes);
     while (opcoes < 1 || opcoes > 4) {
-      printf("Número errado, escolha uma opção valida!\nTente de novo!");
+      printf("Número errado, escolha uma opção valida!\nTente de novo!\n");
       scanf("%d", &opcoes);
     }
+    // PROXIMA FUNÇÃO
     executa(opcoes);
   }
   return EXIT_SUCCESS;
