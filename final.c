@@ -19,7 +19,7 @@ typedef struct aluno {
 // VARIAVEIS
 int alunos_colocados = 0;
 aluno alunos[10];
-char temp;
+char temp[50];
 
 
 
@@ -63,7 +63,7 @@ void tira_aluno_por_id(int id_aluno) {
 
 // FUNÇÃO DE EXECUTA ALUNO
 void executa_aluno(int opcao) {
-  int id;
+  int id, i;
   switch (opcao) {
 
   // CADASTRAR
@@ -71,17 +71,23 @@ void executa_aluno(int opcao) {
     printf("===================================\n");
     printf("Codigo do aluno = %d\n", alunos_colocados + 1);
     char nome_aluno[50];
+    // gambiarra
+    for(i = 0; i <= alunos_colocados; i++){
+        nome_aluno[i] = 0;
+    }
     printf("Digite o nome do aluno: \n");
-    scanf("  %c", &temp); // ARRUMAR!!!!
-    printf("====================================\n");
+    getchar();
 
     while (strlen(nome_aluno) < 3 || strlen(nome_aluno) == 0) {
       fgets(nome_aluno, 50, stdin);
       strcpy(alunos[alunos_colocados].num_aluno, nome_aluno);
-      puts(alunos[alunos_colocados].num_aluno);
+      puts(alunos[alunos_colocados].num_aluno); // printf com \n no final
     }
+    alunos_colocados = alunos_colocados +1;
+    alunos[alunos_colocados].id_aluno = alunos_colocados;
+    printf("====================================\n");
   } break;
-
+  
   // CONSULTAR POR ID
   case 2: {
     printf("Consultar por id\n");
@@ -150,7 +156,7 @@ int executa(int opcao) {
              "Relatório\n 6- Sair\n");
       scanf("%d", &opcoes);
       while (opcoes < 1 || opcoes > 6) {
-        printf("Número errado, escolha uma opção valida!\nTente de novo!");
+        printf("Número errado, escolha uma opção valida!\nTente de novo!\n");
         scanf("%d", &opcoes);
       }
       // PROXIMA FUNÇÃO DE ALUNO
@@ -171,7 +177,7 @@ int executa(int opcao) {
         scanf("%d", &opcoes);
       }
       // PROXIMA FUNÇÃO DE NOTAS
-      executa_notas(opcoes);
+      //executa_notas(opcoes);
     }
     printf("Você finalizou o seu executa nota!\n");
   } break;
@@ -187,7 +193,7 @@ int executa(int opcao) {
         scanf("%d", &opcoes);
       }
       // PROXIMA FUNÇÃO DE RELATORIO
-      executa_relatorio(opcoes);
+      // executa_relatorio(opcoes);
     }
     printf("Você finalizou o seu executa relatorio!\n");
   } break;
@@ -208,7 +214,7 @@ int main() {
     printf("\n \t\t MENU \nOlá usuario! Escolha uma opção:\n 1- Aluno\n 2- Notas\n 3- Relatorios\n 4- Sair\n");
     scanf("%d", &opcoes);
     while (opcoes < 1 || opcoes > 4) {
-      printf("Número errado, escolha uma opção valida!\nTente de novo!");
+      printf("Número errado, escolha uma opção valida!\nTente de novo!\n");
       scanf("%d", &opcoes);
     }
     // PROXIMA FUNÇÃO
