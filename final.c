@@ -71,20 +71,19 @@ void executa_aluno(int opcao) {
     printf("===================================\n");
     printf("Codigo do aluno = %d\n", alunos_colocados + 1);
     char nome_aluno[50];
-    // gambiarra
-    for(i = 0; i <= alunos_colocados; i++){
-        nome_aluno[i] = 0;
-    }
+    memset(nome_aluno, 0, 50);
     printf("Digite o nome do aluno: \n");
     getchar();
 
-    while (strlen(nome_aluno) < 3 || strlen(nome_aluno) == 0) {
+    while (strlen(nome_aluno) <= 4 || strlen(nome_aluno) == 0) {
       fgets(nome_aluno, 50, stdin);
       strcpy(alunos[alunos_colocados].num_aluno, nome_aluno);
       puts(alunos[alunos_colocados].num_aluno); // printf com \n no final
     }
+    
+    alunos[alunos_colocados].id_aluno = alunos_colocados +1;
     alunos_colocados = alunos_colocados +1;
-    alunos[alunos_colocados].id_aluno = alunos_colocados;
+
     printf("====================================\n");
   } break;
   
